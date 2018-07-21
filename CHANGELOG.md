@@ -1,3 +1,7 @@
+# 1.2.0
+
+* Get version from caller script's package.json
+
 # 1.1.1
 
 * Add missing api.js

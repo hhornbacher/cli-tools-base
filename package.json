@@ -1,6 +1,6 @@
 {
   "name": "@cli-tools/cli",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "repository": {
     "type": "git",
     "url": "git@git.h4h0.de:harry/cli-tools.git"
