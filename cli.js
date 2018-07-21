@@ -1,10 +1,19 @@
 // Modules
 const program = require('yargs');
+const shell = require('shelljs');
+const _ = require('lodash');
 const path = require('path');
 
 // Internal modules
 const config = require('./config');
 const ui = require('./ui');
+const api = require('./api');
+
+// Program information
+const programVersion = require('../package.json').version;
+const programName = path.basename(process.argv[1]);
+
+let debugMode = false;
 
 /**
  * General error handler
@@ -14,46 +23,69 @@ const ui = require('./ui');
  */
 const errorHandler = (message, error, program) => {
     ui.print(ui.color.info('Usage:'));
-    program.showHelp();
+    if (ui.getVerbosity() > 0) program.showHelp();
     ui.print('\n\n' + ui.color.warn('Error:'));
-    ui.print(ui.color.bold(message || error.message));
+    if (debugMode && error.stack) ui.print(ui.color.bold(error.stack));
+    else ui.print(ui.color.bold(message || error.message));
     process.exit(1);
 };
 
-/**
- * Define a JS-CLI program
- * @param {string} version Program version
- * @param {function} generate Callback in which the program has to be defined
- */
-const defineProgram = (version, generate) => {
-    const programName = path.basename(process.argv[1]);
+program
+    .version(programVersion)
+    .option('v', {
+        alias: 'verbose',
+        description: 'Show more information',
+        count: true,
+        coerce: (verbose) => {
+            const v = verbose + 1;
+            ui.setVerbosity(v);
+            return v;
+        }
+    })
+    .option('s', {
+        alias: 'silent',
+        description: 'No output',
+        boolean: true,
+        count: false,
+        coerce: (silent) => {
+            ui.setVerbosity(0);
+            return silent;
+        }
+    })
+    .option('d', {
+        alias: 'debug',
+        description: 'Debug mode (stacktraces, very verbose)',
+        boolean: true,
+        count: false,
+        coerce: (debug) => {
+            debugMode = true;
+            ui.setVerbosity(2);
+            return debug;
+        }
+    })
+    .alias('h', 'help')
+    .alias('V', 'version')
+    .help()
+    .demandCommand()
+    .recommendCommands()
+    .completion()
+    .strict()
+    .wrap(program.terminalWidth())
+    .env(programName.replace(/-/g, '_').toUpperCase())
+    .updateStrings({
+        'Commands:': ui.color.info('Commands:'),
+        'Options:': ui.color.info('Options:')
+    })
+    .fail(errorHandler);
 
-    program
-        .version(version)
-        .option('v', {
-            alias: 'verbose',
-            count: true
-        })
-        .alias('h', 'help')
-        .env(programName.replace(/-/g, '_').toUpperCase())
-        .strict()
-        .demandCommand()
-        .recommendCommands()
-        .completion()
-        .wrap(program.terminalWidth())
-        .updateStrings({
-            'Commands:': ui.color.info('Commands:'),
-            'Options:': ui.color.info('Options:')
-        })
-        .fail(errorHandler);
+program.lib = {
+    config: config(programName),
+    ui,
+    api,
+    _
+}
 
-    generate({
-        program,
-        config: config(programName),
-        env: process.env,
-        ui
-    });
-
+const runProgram = () => {
     try {
         program.argv;
     }
@@ -62,4 +94,7 @@ const defineProgram = (version, generate) => {
     }
 };
 
-module.exports = defineProgram;
+module.exports = {
+    program,
+    runProgram
+};
