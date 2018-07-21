@@ -1,0 +1,17 @@
+{
+  "name": "@cli-tools/cli",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@git.h4h0.de:harry/cli-tools.git"
+  },
+  "author": "Harry Hornbacher",
+  "main": "cli.js",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "clui": "^0.3.6",
+    "columnify": "^1.5.4",
+    "fs-extra": "^6.0.1",
+    "yargs": "^12.0.1"
+  }
+}
