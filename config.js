@@ -1,7 +1,11 @@
 const _ = require('lodash');
 const fs = require('fs-extra');
 
-const globalConfig = require(process.env.HOME + '/.config/cli-tools.json');
+const configPath = process.env.HOME + '/.config/cli-tools.json';
+
+if (!fs.existsSync(configPath)) fs.writeJsonSync(configPath, {});
+
+const globalConfig = require(configPath);
 
 /**
  * Get scoped configuration of program
@@ -25,7 +29,7 @@ const config = (programName) => {
     const set = (path, value) => {
         _.set(programConfig, path, value);
         fs.writeJsonSync(
-            process.env.HOME + '/.config/cli-tools.json',
+            configPath,
             {
                 ...globalConfig,
                 [programName]: programConfig
