@@ -1,8 +1,8 @@
 // Modules
 const program = require('yargs');
-const shell = require('shelljs');
 const _ = require('lodash');
 const path = require('path');
+const fs = require('fs-extra');
 
 // Internal modules
 const config = require('./config');
@@ -10,10 +10,42 @@ const ui = require('./ui');
 const api = require('./api');
 
 // Program information
-const programVersion = require('../package.json').version;
 const programName = path.basename(process.argv[1]);
 
 let debugMode = false;
+
+
+const getProgramVersion = () => {
+    const getCallerFile = () => {
+        try {
+            var err = new Error();
+            var callerfile;
+            var currentfile;
+
+            Error.prepareStackTrace = function (err, stack) { return stack; };
+
+            currentfile = err.stack.shift().getFileName();
+
+            while (err.stack.length) {
+                callerfile = err.stack.shift().getFileName();
+
+                if (currentfile !== callerfile) return callerfile;
+            }
+        } catch (err) { }
+        return undefined;
+    };
+
+    const programPath = path.dirname(getCallerFile());
+    let depth = 1;
+    let searchPath = path.resolve(programPath, './package.json');
+    while (!fs.existsSync(searchPath) && searchPath !== '/package.json') {
+        const packagePath = _.repeat('../', depth) + 'package.json';
+        searchPath = path.resolve(programPath, packagePath);
+        depth++;
+    }
+
+    return require(searchPath).version;
+};
 
 /**
  * General error handler
@@ -30,54 +62,6 @@ const errorHandler = (message, error, program) => {
     process.exit(1);
 };
 
-program
-    .version(programVersion)
-    .option('v', {
-        alias: 'verbose',
-        description: 'Show more information',
-        count: true,
-        coerce: (verbose) => {
-            const v = verbose + 1;
-            ui.setVerbosity(v);
-            return v;
-        }
-    })
-    .option('s', {
-        alias: 'silent',
-        description: 'No output',
-        boolean: true,
-        count: false,
-        coerce: (silent) => {
-            ui.setVerbosity(0);
-            return silent;
-        }
-    })
-    .option('d', {
-        alias: 'debug',
-        description: 'Debug mode (stacktraces, very verbose)',
-        boolean: true,
-        count: false,
-        coerce: (debug) => {
-            debugMode = true;
-            ui.setVerbosity(2);
-            return debug;
-        }
-    })
-    .alias('h', 'help')
-    .alias('V', 'version')
-    .help()
-    .demandCommand()
-    .recommendCommands()
-    .completion()
-    .strict()
-    .wrap(program.terminalWidth())
-    .env(programName.replace(/-/g, '_').toUpperCase())
-    .updateStrings({
-        'Commands:': ui.color.info('Commands:'),
-        'Options:': ui.color.info('Options:')
-    })
-    .fail(errorHandler);
-
 program.lib = {
     config: config(programName),
     ui,
@@ -85,16 +69,59 @@ program.lib = {
     _
 }
 
-const runProgram = () => {
+program.run = () => {
     try {
-        program.argv;
+        program.version(getProgramVersion())
+            .option('v', {
+                alias: 'verbose',
+                description: 'Show more information',
+                count: true,
+                coerce: (verbose) => {
+                    const v = verbose + 1;
+                    ui.setVerbosity(v);
+                    return v;
+                }
+            })
+            .option('s', {
+                alias: 'silent',
+                description: 'No output',
+                boolean: true,
+                count: false,
+                coerce: (silent) => {
+                    ui.setVerbosity(0);
+                    return silent;
+                }
+            })
+            .option('d', {
+                alias: 'debug',
+                description: 'Debug mode (stacktraces, very verbose)',
+                boolean: true,
+                count: false,
+                coerce: (debug) => {
+                    debugMode = true;
+                    ui.setVerbosity(2);
+                    return debug;
+                }
+            })
+            .alias('h', 'help')
+            .alias('V', 'version')
+            .help()
+            .demandCommand()
+            .recommendCommands()
+            .completion()
+            .strict()
+            .wrap(program.terminalWidth())
+            .env(programName.replace(/-/g, '_').toUpperCase())
+            .updateStrings({
+                'Commands:': ui.color.info('Commands:'),
+                'Options:': ui.color.info('Options:')
+            })
+            .fail(errorHandler)
+            .argv;
     }
     catch (error) {
         errorHandler(error.message, error, program);
     }
 };
 
-module.exports = {
-    program,
-    runProgram
-};
+module.exports = program;
