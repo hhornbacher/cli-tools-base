@@ -1,3 +1,7 @@
+# 1.1.1
+
+* Add missing api.js
+
 # 1.1.0
 
 * Implement verbosity, silent and debug output options
