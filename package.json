@@ -2,6 +2,10 @@
   "name": "@cli-tools/base",
   "version": "1.3.0",
   "author": "Harry Hornbacher",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hhornbacher/cli-tools-base.git"
+  },
   "main": "cli.js",
   "license": "MIT",
   "dependencies": {
