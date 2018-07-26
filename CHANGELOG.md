@@ -1,6 +1,6 @@
 # 1.3.0
 
-* Rename from @cli-tools/cli to @cli-tools/base
+* Rename from @cli-tools/cli to @clitools/base
 
 # 1.2.0
 
