@@ -1,12 +1,9 @@
 {
-  "name": "@cli-tools/cli",
-  "version": "1.2.0",
-  "repository": {
-    "type": "git",
-    "url": "git@git.h4h0.de:harry/cli-tools.git"
-  },
+  "name": "@cli-tools/base",
+  "version": "1.3.0",
   "author": "Harry Hornbacher",
   "main": "cli.js",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",
     "clui": "^0.3.6",

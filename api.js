@@ -1,6 +1,6 @@
 const https = require('https');
 
-const api = (host, globalHeaders) => {
+const api = (host, globalHeaders = {}) => {
     const request = (path, method, payload = null) => new Promise((resolve, reject) => {
         const payloadJSON = payload ? JSON.stringify(payload) : null;
 

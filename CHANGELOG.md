@@ -1,3 +1,7 @@
+# 1.3.0
+
+* Rename from @cli-tools/cli to @cli-tools/base
+
 # 1.2.0
 
 * Get version from caller script's package.json
