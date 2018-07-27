@@ -1,3 +1,7 @@
+# 1.4.0
+
+* Improve debug mode
+
 # 1.3.0
 
 * Rename from @cli-tools/cli to @clitools/base

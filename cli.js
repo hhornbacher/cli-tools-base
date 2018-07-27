@@ -57,7 +57,7 @@ const errorHandler = (message, error, program) => {
     ui.print(ui.color.info('Usage:'));
     if (ui.getVerbosity() > 0) program.showHelp();
     ui.print('\n\n' + ui.color.warn('Error:'));
-    if (debugMode && error.stack) ui.print(ui.color.bold(error.stack));
+    if (debugMode) ui.print(ui.color.bold(error));
     else ui.print(ui.color.bold(message || error.message));
     process.exit(1);
 };
