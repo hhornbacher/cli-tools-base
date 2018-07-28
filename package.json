@@ -2,6 +2,7 @@
   "name": "@clitools/base",
   "version": "1.5.1",
   "author": "Harry Hornbacher",
+  "description": "Base module for writing advanced shell scripts with Node.js",
   "keywords": [
     "node",
     "js",
@@ -24,5 +25,9 @@
     "fs-extra": "^6.0.1",
     "lodash": "^4.17.10",
     "yargs": "^12.0.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/hhornbacher/cli-tools-base/issues"
+  },
+  "homepage": "https://github.com/hhornbacher/cli-tools-base#readme"
 }
