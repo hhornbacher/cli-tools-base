@@ -1,6 +1,6 @@
 const https = require('https');
 
-const api = (host, globalHeaders = {}) => {
+global.cli.api = (host, globalHeaders = {}) => {
     const request = (path, method, payload = null) => new Promise((resolve, reject) => {
         const payloadJSON = payload ? JSON.stringify(payload) : null;
 
@@ -57,5 +57,3 @@ const api = (host, globalHeaders = {}) => {
         delete: (path) => request(path, 'DELETE')
     };
 };
-
-module.exports = api;
