@@ -2,6 +2,13 @@
 
 Base module for writing advanced shell scripts with Node.js
 
+## Install
+
+```bash
+$ npm i --save @clitools/base
+[...]
+```
+
 ## Features
 
 * User configuration file management
