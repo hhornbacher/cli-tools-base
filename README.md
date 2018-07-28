@@ -1,6 +1,6 @@
 # @clitools/base
 
-Base module for writing advanced shell scripts
+Base module for writing advanced shell scripts with Node.js
 
 ## Features
 
