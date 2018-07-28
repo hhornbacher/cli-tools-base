@@ -1,6 +1,6 @@
 {
   "name": "@clitools/base",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "author": "Harry Hornbacher",
   "description": "Base module for writing advanced shell scripts with Node.js",
   "keywords": [
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/hhornbacher/cli-tools-base.git"
   },
-  "main": "cli.js",
+  "main": "./lib/cli.js",
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",

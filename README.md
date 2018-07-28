@@ -2,6 +2,8 @@
 
 Base module for writing advanced shell scripts with Node.js
 
+[Changelog](CHANGELOG.md)
+
 ## Install
 
 ```bash
