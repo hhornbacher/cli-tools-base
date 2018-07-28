@@ -1,3 +1,10 @@
+# 1.6.0
+
+* Improve API module
+* Improve UI module
+* Improve configuration module
+* Improve `global cli` interface
+
 # 1.5.1
 
 * Turn `program.lib` into `global cli`
