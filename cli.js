@@ -62,12 +62,12 @@ const errorHandler = (message, error, program) => {
     process.exit(1);
 };
 
-program.lib = {
+global.cli = {
     config: config(programName),
     ui,
     api,
     _
-}
+};
 
 program.run = () => {
     try {
