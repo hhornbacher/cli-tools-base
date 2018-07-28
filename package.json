@@ -19,10 +19,10 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "cli-progress": "^2.0.0",
-    "cli-spinners": "^1.3.1",
     "columnify": "^1.5.4",
     "fs-extra": "^6.0.1",
     "lodash": "^4.17.10",
+    "ora": "^3.0.0",
     "yargs": "^12.0.1"
   },
   "bugs": {
