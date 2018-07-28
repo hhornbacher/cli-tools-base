@@ -1,6 +1,6 @@
 {
   "name": "@clitools/base",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "author": "Harry Hornbacher",
   "description": "Base module for writing advanced shell scripts with Node.js",
   "keywords": [
@@ -22,7 +22,6 @@
     "columnify": "^1.5.4",
     "fs-extra": "^6.0.1",
     "lodash": "^4.17.10",
-    "ora": "^3.0.0",
     "yargs": "^12.0.1"
   },
   "bugs": {
