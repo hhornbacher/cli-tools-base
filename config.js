@@ -1,49 +1,35 @@
-const _ = require('lodash');
-const fs = require('fs-extra');
-
 const configPath = process.env.HOME + '/.config/cli-tools.json';
 
-if (!fs.existsSync(configPath)) fs.writeJsonSync(configPath, {});
+if (!cli.fs.existsSync(configPath)) cli.fs.writeJsonSync(configPath, {});
 
 const globalConfig = require(configPath);
 
+const programConfig = globalConfig[cli.programName] || {};
+
+global.cli.config = {};
+
 /**
- * Get scoped configuration of program
- * @param {string} programName Name of program
+ * Read value from configuration by path
+ * @param {string} path Path to value (eg.: foo.bar or foo.bar[2])
+ * @param {*} defaultValue Default, if value is not configured
  */
-const config = (programName) => {
-    const programConfig = globalConfig[programName] || {};
+global.cli.config.get = (path, defaultValue = null) => cli._.get(programConfig, path, null) || defaultValue;
 
-    /**
-     * Read value from configuration by path
-     * @param {string} path Path to value (eg.: foo.bar or foo.bar[2])
-     * @param {*} defaultValue Default, if value is not configured
-     */
-    const get = (path, defaultValue = null) => _.get(programConfig, path, null) || defaultValue;
-
-    /**
-     * Set value in configuration by path
-     * @param {string} path Path to value (eg.: foo.bar or foo.bar[2])
-     * @param {*} value New value
-     */
-    const set = (path, value) => {
-        _.set(programConfig, path, value);
-        fs.writeJsonSync(
-            configPath,
-            {
-                ...globalConfig,
-                [programName]: programConfig
-            },
-            {
-                spaces: 2
-            }
-        );
-    };
-
-    return {
-        get,
-        set
-    };
+/**
+ * Set value in configuration by path
+ * @param {string} path Path to value (eg.: foo.bar or foo.bar[2])
+ * @param {*} value New value
+ */
+global.cli.config.set = (path, value) => {
+    cli._.set(programConfig, path, value);
+    cli.fs.writeJsonSync(
+        configPath,
+        {
+            ...globalConfig,
+            [cli.programName]: programConfig
+        },
+        {
+            spaces: 2
+        }
+    );
 };
-
-module.exports = config;
