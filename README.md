@@ -2,15 +2,6 @@
 
 Base module for writing advanced shell scripts with Node.js
 
-[Changelog](CHANGELOG.md)
-
-## Install
-
-```bash
-$ npm i --save @clitools/base
-[...]
-```
-
 ## Features
 
 * User configuration file management
@@ -21,9 +12,16 @@ $ npm i --save @clitools/base
 * CLI argument parsing (using: [Yargs](https://github.com/yargs/yargs))
 * Consistent, formatted cli text output (using: [Chalk](https://github.com/chalk/chalk), [columnify](https://github.com/timoxley/columnify), [cli-progress](https://github.com/AndiDittrich/Node.CLI-Progress))
 
+## Install
+
+```bash
+$ npm i --save @clitools/base
+[...]
+```
+
 ## Example
 
-**example.sh:**
+**example.js:**
 
 ```javascript
 #!/usr/bin/env node
@@ -84,3 +82,5 @@ Options:
 Error:
 Not enough non-option arguments: got 0, need at least 1
 ```
+
+## [Changelog](CHANGELOG.md)
