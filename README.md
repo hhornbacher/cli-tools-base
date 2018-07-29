@@ -5,12 +5,20 @@ Base module for writing advanced shell scripts with Node.js
 ## Features
 
 * User configuration file management
+* Access to system key management for secure storage of credentials (using: [keytar](https://github.com/atom/node-keytar))
 * Error handling
 * Debug mode, different verbosity levels
 * Silent mode
 * Bash completion script generation (using: [Yargs](https://github.com/yargs/yargs))
 * CLI argument parsing (using: [Yargs](https://github.com/yargs/yargs))
 * Consistent, formatted cli text output (using: [Chalk](https://github.com/chalk/chalk), [columnify](https://github.com/timoxley/columnify), [cli-progress](https://github.com/AndiDittrich/Node.CLI-Progress))
+
+## Requirements
+
+* `libsecret` is a dependency of [keytar](https://github.com/atom/node-keytar)
+  * Debian/Ubuntu: `sudo apt-get install libsecret-1-dev`
+  * Red Hat-based: `sudo yum install libsecret-devel`
+  * Arch Linux: `sudo pacman -S libsecret`
 
 ## Install
 
