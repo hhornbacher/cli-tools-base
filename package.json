@@ -1,8 +1,21 @@
 {
   "name": "@clitools/base",
-  "version": "1.6.2",
+  "version": "2.0.0",
   "author": "Harry Hornbacher",
   "description": "Base module for writing advanced shell scripts with Node.js",
+  "main": "./lib/cli.js",
+  "scripts": {
+    "test": "mocha --recursive \"./lib/*.test.js\""
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hhornbacher/cli-tools-base.git"
+  },
+  "homepage": "https://github.com/hhornbacher/cli-tools-base#readme",
+  "bugs": {
+    "url": "https://github.com/hhornbacher/cli-tools-base/issues"
+  },
   "keywords": [
     "node",
     "js",
@@ -10,12 +23,6 @@
     "shell",
     "scripting"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hhornbacher/cli-tools-base.git"
-  },
-  "main": "./lib/cli.js",
-  "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",
     "cli-progress": "^2.0.0",
@@ -24,8 +31,8 @@
     "lodash": "^4.17.10",
     "yargs": "^12.0.1"
   },
-  "bugs": {
-    "url": "https://github.com/hhornbacher/cli-tools-base/issues"
-  },
-  "homepage": "https://github.com/hhornbacher/cli-tools-base#readme"
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
 }
