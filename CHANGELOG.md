@@ -10,6 +10,7 @@
 * Replace `shelljs` with own process execution module
 * Remove `ora` dependency
 * Implement unit tests
+* Integrate linter
 
 ## 1.6.1
 
