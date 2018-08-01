@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+require('./lib/cli');
+
+
+cli.program
+    .command('test <param>', 'Example command', (program) => {
+        program
+            .positional('param', {
+                description: 'Test parameter'
+            });
+    }, ({ param }) => {
+        return cli.promises.throttle([
+            () => Promise.resolve(param),
+            () => Promise.resolve('A'),
+            () => Promise.resolve('B'),
+            () => Promise.resolve('C'),
+            () => Promise.resolve('D'),
+            () => Promise.resolve('E'),
+            () => Promise.resolve('F'),
+            () => Promise.resolve('G'),
+            () => Promise.resolve('H'),
+            () => Promise.resolve('I'),
+            () => Promise.resolve('X')
+        ], 1000)
+            .then(cli.ui.print);
+    });
+
+cli.run();
