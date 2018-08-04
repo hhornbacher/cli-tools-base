@@ -1,20 +1,23 @@
 # @clitools/base
 
 Base module for writing advanced shell scripts with Node.js
+At it's core it uses [Yargs](https://github.com/yargs/yargs) for option and parameter parsing, so it's a good idea to look at that documentation first.
 
 Only tested with Linux (Ubuntu/Mint), Mac OS maybe also works, Windows is not supported.
 
 ## Features
 
-* User configuration file management
-* Access to system key management for secure storage of credentials (using: [keytar](https://github.com/atom/node-keytar)
-* Error handling
-* Debug mode, different verbosity levels
-* Silent mode
-* Integrates [request](https://github.com/request/request) for API calls, crawling, downloading, ...
-* Bash completion script generation (using: [Yargs](https://github.com/yargs/yargs))
-* CLI argument parsing (using: [Yargs](https://github.com/yargs/yargs))
-* Consistent, formatted cli text output (using: [Chalk](https://github.com/chalk/chalk), [columnify](https://github.com/timoxley/columnify), [cli-progress](https://github.com/AndiDittrich/Node.CLI-Progress))
+The target is to have a base module for writing Linux shell scripts, with APIs for most common CLI tasks, like:
+
+* Parsing command line optionsa and arguments ([cli.js](lib/cli.js), _using:_ [Yargs](https://github.com/yargs/yargs))
+* Bash completion script generation ([cli.js](lib/cli.js), _using:_ [Yargs](https://github.com/yargs/yargs))
+* User configuration file management ([config.js](lib/config.js))
+* Access to system key management for secure storage of credentials ([keystore.js](lib/error-handler.js), _using:_ [keytar](https://github.com/atom/node-keytar))
+* Error handling ([error-handler.js](lib/error-handler.js))
+* Debug mode, different verbosity levels ([error-handler.js](lib/error-handler.js), [ui.js](lib/ui.js))
+* Silent mode ([ui.js](lib/ui.js))
+* Integrates [request](https://github.com/request/request) for API calls, crawling, downloading, etc. ([request.js](lib/request.js))
+* Consistent, formatted cli text output ([ui.js](lib/ui.js), _using:_ [Chalk](https://github.com/chalk/chalk), [columnify](https://github.com/timoxley/columnify), [cli-progress](https://github.com/AndiDittrich/Node.CLI-Progress))
 
 ## Requirements
 
