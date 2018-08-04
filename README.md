@@ -2,13 +2,16 @@
 
 Base module for writing advanced shell scripts with Node.js
 
+Only tested with Linux (Ubuntu/Mint), Mac OS maybe also works, Windows is not supported.
+
 ## Features
 
 * User configuration file management
-* Access to system key management for secure storage of credentials (using: [keytar](https://github.com/atom/node-keytar))
+* Access to system key management for secure storage of credentials (using: [keytar](https://github.com/atom/node-keytar)
 * Error handling
 * Debug mode, different verbosity levels
 * Silent mode
+* Integrates [request](https://github.com/request/request) for API calls, crawling, downloading, ...
 * Bash completion script generation (using: [Yargs](https://github.com/yargs/yargs))
 * CLI argument parsing (using: [Yargs](https://github.com/yargs/yargs))
 * Consistent, formatted cli text output (using: [Chalk](https://github.com/chalk/chalk), [columnify](https://github.com/timoxley/columnify), [cli-progress](https://github.com/AndiDittrich/Node.CLI-Progress))
@@ -29,39 +32,41 @@ $ npm i --save @clitools/base
 
 ## Example
 
-**example.js:**
+**example-tool:**
 
 ```javascript
 #!/usr/bin/env node
 
-require('@clitools/base');
+require('./lib/cli');
 
-const {
-    importOrders,
-    listComponents
-} = require('./lib/components');
 
 cli.program
-    .command('import <distributor>', 'Import orders to db', (program) => {
-        program.positional('distributor', {
-            choices: ['foo', 'bar']
-        });
-    }, ({ distributor }) => {
-        return importOrders(distributor)
-            .then(cli.ui.print);
-    })
-    .command('ls', 'List components', cli._.noop, (yargs) => {
-        cli.ui.startProgress('Retrieving components from db...');
-        return listComponents()
-            .then((x) => {
-                cli.ui.updateProgress(50);
-                return x;
-            })
-            .then((x) => {
+    .command('test <param>', 'Example command', (program) => {
+        program
+            .positional('param', {
+                description: 'Test parameter'
+            });
+    }, ({ param }) => {
+        cli.ui.startProgress('Test...');
+        return cli.promises.throttle([
+            () => Promise.resolve(param),
+            () => Promise.resolve('A'),
+            () => Promise.resolve('B'),
+            () => Promise.resolve('C'),
+            () => Promise.resolve('D'),
+            () => Promise.resolve('E'),
+            () => Promise.resolve('F'),
+            () => Promise.resolve('G'),
+            () => Promise.resolve('H'),
+            () => Promise.resolve('I'),
+            () => Promise.resolve('X')
+        ], 1000, (p) => {
+            cli.ui.updateProgress(p);
+        })
+            .then((result) => {
                 cli.ui.stopProgress();
-                return x;
-            })
-            .then(cli.ui.print);
+                cli.ui.print(result);
+            });
     });
 
 cli.run();
@@ -70,21 +75,20 @@ cli.run();
 **Output:**
 
 ```bash
-$ ./example.js
+$ ./example-tool
 Usage:
-example.js <command>
+example-tool <command>
 
 Commands:
-  example.js import <distributor>  Import orders to db
-  example.js ls                    List components
-  example.js completion            generate bash completion script
+  example-tool test <param>  Example command
+  example-tool completion    generate bash completion script
 
 Options:
-  -v, --verbose  Show more information                                                                                                                                                         [count]
-  -s, --silent   No output                                                                                                                                                                   [boolean]
-  -d, --debug    Debug mode (stacktraces, very verbose)                                                                                                                                      [boolean]
-  -h, --help     Show help                                                                                                                                                                   [boolean]
-  -V, --version  Show version number                                                                                                                                                         [boolean]
+  -v, --verbose  Show more information                      [count]
+  -s, --silent   No output                                  [boolean]
+  -d, --debug    Debug mode (stacktraces, very verbose)     [boolean]
+  -h, --help     Show help                                  [boolean]
+  -V, --version  Show version number                        [boolean]
 
 
 Error:
