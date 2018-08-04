@@ -1,14 +1,16 @@
 # Changelog
 
+## 2.1.0
+
+* Replace own request library with `request` and `request-promise-native`
+* Replace `shelljs` with own process execution module
+* Improve debug output
+
 ## 2.0.0
 
 * Add promise helper module
 * Add HTTP(S) request module
 * Implement ui progress functions
-* Improve debug output
-* Improve API module
-* Replace `shelljs` with own process execution module
-* Remove `ora` dependency
 * Implement unit tests
 * Integrate linter
 
