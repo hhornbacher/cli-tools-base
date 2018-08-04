@@ -1,14 +1,18 @@
 # Changelog
 
+## 2.1.0
+
+* Improve debug output
+  * Add `cli.ui.printError`
+  * Add `cli.ui.printDebug`
+* Replace own request library with `request` and `request-promise-native`
+* Remove `api.js`
+
 ## 2.0.0
 
 * Add promise helper module
 * Add HTTP(S) request module
 * Implement ui progress functions
-* Improve debug output
-* Improve API module
-* Replace `shelljs` with own process execution module
-* Remove `ora` dependency
 * Implement unit tests
 * Integrate linter
 

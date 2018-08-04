@@ -10,6 +10,7 @@ cli.program
                 description: 'Test parameter'
             });
     }, ({ param }) => {
+        cli.ui.startProgress('Test...');
         return cli.promises.throttle([
             () => Promise.resolve(param),
             () => Promise.resolve('A'),
@@ -22,8 +23,13 @@ cli.program
             () => Promise.resolve('H'),
             () => Promise.resolve('I'),
             () => Promise.resolve('X')
-        ], 1000)
-            .then(cli.ui.print);
+        ], 1000, (p) => {
+            cli.ui.updateProgress(p);
+        })
+            .then((result) => {
+                cli.ui.stopProgress();
+                cli.ui.print(result);
+            });
     });
 
 cli.run();

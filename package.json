@@ -1,13 +1,12 @@
 {
   "name": "@clitools/base",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "Harry Hornbacher",
   "description": "Base module for writing advanced shell scripts with Node.js",
   "main": "./lib/cli.js",
   "scripts": {
     "test": "nyc --reporter=text mocha --recursive \"./lib/*.test.js\"",
-    "testx": "nyc --reporter=text mocha --recursive \"./lib/ui.test.js\"",
-    "tdd": "nyc --reporter=text mocha --recursive --watch \"./lib/*.test.js\"",
+    "tdd": "mocha --recursive --watch \"./lib/*.test.js\"",
     "lint": "eslint -c .eslintrc.json lib/*.js",
     "prepublish": "npm run lint && npm test"
   },
@@ -35,6 +34,8 @@
     "inquirer": "^6.0.0",
     "keytar": "^4.2.1",
     "lodash": "^4.17.10",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5",
     "yargs": "^12.0.1"
   },
   "devDependencies": {
