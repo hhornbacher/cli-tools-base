@@ -2,9 +2,10 @@
 
 ## 2.1.0
 
-* Replace own request library with `request` and `request-promise-native`
-* Replace `shelljs` with own process execution module
 * Improve debug output
+* Replace own request library with `request` and `request-promise-native`
+* Remove `api.js`
+* Replace `shelljs` with own process execution module
 
 ## 2.0.0
 
