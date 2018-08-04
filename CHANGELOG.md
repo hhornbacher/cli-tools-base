@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0
+
+* Add promise helper module
+* Add HTTP(S) request module
+* Implement ui progress functions
+* Improve debug output
+* Improve API module
+* Replace `shelljs` with own process execution module
+* Remove `ora` dependency
+* Implement unit tests
+* Integrate linter
+
 ## 1.6.1
 
 * Move sorce files to `lib` directory
