@@ -6,6 +6,7 @@
   "main": "./lib/cli.js",
   "scripts": {
     "test": "nyc --reporter=text mocha --recursive \"./lib/*.test.js\"",
+    "testx": "nyc --reporter=text mocha --recursive \"./lib/ui.test.js\"",
     "tdd": "nyc --reporter=text mocha --recursive --watch \"./lib/*.test.js\"",
     "lint": "eslint -c .eslintrc.json lib/*.js",
     "prepublish": "npm run lint && npm test"
@@ -40,6 +41,7 @@
     "chai": "^4.1.2",
     "eslint": "^5.2.0",
     "mocha": "^5.2.0",
+    "mock-require": "^3.0.2",
     "nyc": "^12.0.2",
     "sinon": "^6.1.4"
   }
