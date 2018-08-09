@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0
+
+* Move `keystore` to own module
+
 ## 2.1.0
 
 * Improve debug output

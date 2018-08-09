@@ -1,6 +1,6 @@
 {
   "name": "@clitools/base",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": "Harry Hornbacher",
   "description": "Base module for writing advanced shell scripts with Node.js",
   "main": "./lib/cli.js",
@@ -32,7 +32,6 @@
     "columnify": "^1.5.4",
     "fs-extra": "^6.0.1",
     "inquirer": "^6.0.0",
-    "keytar": "^4.2.1",
     "lodash": "^4.17.10",
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5",

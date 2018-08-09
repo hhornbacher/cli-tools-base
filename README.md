@@ -11,7 +11,7 @@ The target is to have a base module for writing Linux shell scripts, with APIs f
 * Parsing command line optionsa and arguments ([cli.js](lib/cli.js), _using:_ [Yargs](https://github.com/yargs/yargs))
 * Bash completion script generation ([cli.js](lib/cli.js), _using:_ [Yargs](https://github.com/yargs/yargs))
 * User configuration file management ([config.js](lib/config.js))
-* Access to system key management for secure storage of credentials ([keystore.js](lib/error-handler.js), _using:_ [keytar](https://github.com/atom/node-keytar))
+* Access to system key management for secure storage of credentials (Plugin: [@clitools/keystore](https://github.com/hhornbacher/cli-tools-keystore.git))
 * Error handling ([error-handler.js](lib/error-handler.js))
 * Debug mode, different verbosity levels ([error-handler.js](lib/error-handler.js), [ui.js](lib/ui.js))
 * Silent mode ([ui.js](lib/ui.js))
