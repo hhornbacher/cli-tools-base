@@ -1,6 +1,6 @@
 {
   "name": "@clitools/base",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "author": "Harry Hornbacher",
   "description": "Base module for writing advanced shell scripts with Node.js",
   "main": "./lib/cli.js",

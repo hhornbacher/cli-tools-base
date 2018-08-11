@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.0
+
+* Change the way plugins are loaded (have to be required in the script now)
+
 ## 2.2.0
 
 * Move `keystore` to own module
