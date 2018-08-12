@@ -18,15 +18,6 @@ The target is to have a base module for writing Linux shell scripts, with APIs f
 * Integrates [request](https://github.com/request/request) for API calls, crawling, downloading, etc. ([request.js](lib/request.js))
 * Consistent, formatted cli text output ([ui.js](lib/ui.js), _using:_ [Chalk](https://github.com/chalk/chalk), [columnify](https://github.com/timoxley/columnify), [cli-progress](https://github.com/AndiDittrich/Node.CLI-Progress))
 
-## System requirements
-
-Only tested with Linux (Ubuntu/Mint), Mac OS maybe also works, Windows is not supported.
-
-* `libsecret` is a dependency of [keytar](https://github.com/atom/node-keytar)
-  * Debian/Ubuntu: `sudo apt-get install libsecret-1-dev`
-  * Red Hat-based: `sudo yum install libsecret-devel`
-  * Arch Linux: `sudo pacman -S libsecret`
-
 ## Install
 
 ```bash
