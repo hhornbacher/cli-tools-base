@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.1
+
+* Remove default env settings
+
 ## 2.3.0
 
 * Change the way plugins are loaded (have to be required in the script now)
